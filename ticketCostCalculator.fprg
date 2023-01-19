@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="holton-l4a"/>
+        <attribute name="authors" value="Jasmine Holton"/>
+        <attribute name="about" value="Sp22&#13;&#10;0001&#13;&#10;jholton"/>
+        <attribute name="saved" value="2022-02-09 07:59:54 PM"/>
+        <attribute name="created" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDItMDk7MDc6MTk6NDUgUE07Mjg3MQ=="/>
+        <attribute name="edited" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDItMDk7MDc6NTk6NTQgUE07MjsyOTg0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="T1: Adults 0, child 2 subtotal= 51, tax 3.57 and total cost 54.57&#13;&#10;T2: Adults 2, child 0 subtotal= 73.50, tax 5.145 total cost 75.645&#13;&#10;T3: Adults 2, child 2 subtotal= 124.50, tax 8.715 total cost 133.215"/>
+            <declare name="tax, adultCost, childCost, minFee, maxFee" type="Real" array="False" size=""/>
+            <assign variable="tax" expression="0.07"/>
+            <assign variable="adultCost" expression="36.75"/>
+            <assign variable="childCost" expression="25.50"/>
+            <assign variable="minFee" expression="0.50"/>
+            <assign variable="maxFee" expression="1.00"/>
+            <declare name="attend" type="Integer" array="False" size=""/>
+            <assign variable="attend" expression="5"/>
+            <call expression="welcome"/>
+            <call expression="concertDetails (tax, adultCost, childCost, minFee, maxFee, attend)"/>
+            <call expression="finish"/>
+        </body>
+    </function>
+    <function name="calcCost" type="None" variable="">
+        <parameters>
+            <parameter name="tax" type="Real" array="False"/>
+            <parameter name="adultCost" type="Real" array="False"/>
+            <parameter name="childCost" type="Real" array="False"/>
+            <parameter name="minFee" type="Real" array="False"/>
+            <parameter name="maxFee" type="Real" array="False"/>
+            <parameter name="adultTickets" type="Integer" array="False"/>
+            <parameter name="childTickets" type="Integer" array="False"/>
+            <parameter name="date" type="String" array="False"/>
+            <parameter name="name" type="String" array="False"/>
+            <parameter name="phone" type="Integer" array="False"/>
+            <parameter name="attend" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="totalTickets" type="Integer" array="False" size=""/>
+            <declare name="subTotal, salesTax, totalCost, fee" type="Real" array="False" size=""/>
+            <assign variable="totalTickets" expression="childTickets + adultTickets"/>
+            <if expression="totalTickets &lt;= attend">
+                <then>
+                    <assign variable="fee" expression="totalTickets * maxFee"/>
+                </then>
+                <else>
+                    <assign variable="fee" expression="totalTickets * minFee"/>
+                </else>
+            </if>
+            <assign variable="subTotal" expression="(adultTickets  * adultCost) + (childTickets * childCost)"/>
+            <assign variable="salesTax" expression="subTotal * tax"/>
+            <assign variable="totalCost" expression="subTotal + salesTax + fee"/>
+            <call expression="createReport (name, phone, adultTickets, childTickets, date, subTotal, salesTax, fee, totalCost)"/>
+        </body>
+    </function>
+    <function name="concertDetails" type="None" variable="">
+        <parameters>
+            <parameter name="tax" type="Real" array="False"/>
+            <parameter name="adultCost" type="Real" array="False"/>
+            <parameter name="childCost" type="Real" array="False"/>
+            <parameter name="minFee" type="Real" array="False"/>
+            <parameter name="maxFee" type="Real" array="False"/>
+            <parameter name="attend" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="adultTickets, childTickets, phone" type="Integer" array="False" size=""/>
+            <declare name="date, name" type="String" array="False" size=""/>
+            <output expression="&quot;How many adults? You need at least one.&quot;" newline="True"/>
+            <input variable="adultTickets"/>
+            <if expression="adultTickets &gt;= 1">
+                <then>
+                    <output expression="&quot;You must choose one of the allowed dates which are Mar, Apr or May.&quot;" newline="True"/>
+                    <output expression="&quot;Please enter the date you wish to attend.&quot;" newline="True"/>
+                    <input variable="date"/>
+                    <if expression="date = &quot;Mar&quot; OR date = &quot;Apri&quot; OR date = &quot;May&quot;">
+                        <then>
+                            <output expression="&quot;How many child tickets are needed?&quot;" newline="True"/>
+                            <input variable="childTickets"/>
+                            <output expression="&quot;Please enter your name.&quot;" newline="True"/>
+                            <input variable="name"/>
+                            <output expression="&quot;Please enter your phone number.&quot;" newline="True"/>
+                            <input variable="phone"/>
+                            <call expression="calcCost (tax, adultCost, childCost, minFee, maxFee, adultTickets, childTickets, date, name, phone, attend)"/>
+                        </then>
+                        <else>
+                            <call expression="errorMsg"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <call expression="errorMsg"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="createReport" type="None" variable="">
+        <parameters>
+            <parameter name="name" type="String" array="False"/>
+            <parameter name="phone" type="Integer" array="False"/>
+            <parameter name="adultTickets" type="Integer" array="False"/>
+            <parameter name="childTickets" type="Integer" array="False"/>
+            <parameter name="date" type="String" array="False"/>
+            <parameter name="subTotal" type="Real" array="False"/>
+            <parameter name="salesTax" type="Real" array="False"/>
+            <parameter name="fee" type="Real" array="False"/>
+            <parameter name="totalCost" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Adult Tickets: &quot;&amp;adultTickets" newline="True"/>
+            <output expression="&quot;Child Tickets: &quot;&amp;childTickets" newline="True"/>
+            <output expression="&quot;The date you selected was &quot;&amp;date" newline="True"/>
+            <output expression="&quot;Subtotal is: $&quot;&amp;subtotal&amp;&quot;, Tax is: $&quot;&amp;salesTax&amp;&quot;, Additional Fee is $&quot;&amp;fee&amp; &quot; for a total cost of: $&quot;&amp;totalCost" newline="True"/>
+        </body>
+    </function>
+    <function name="errorMsg" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;I am sorry, you must have at leat one adult ticket as well as the correct dat of Mar, Apr, or May. This program will now end.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="finish" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Thank you for using this program. This program was created by Holton.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="welcome" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome. This program calculate the total cost of concert tickets.&quot;" newline="True"/>
+            <output expression="&quot;Given concert&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

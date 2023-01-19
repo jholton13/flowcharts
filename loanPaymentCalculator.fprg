@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="holton-asgn5a"/>
+        <attribute name="authors" value="Jasmine Holton"/>
+        <attribute name="about" value="Sp22&#13;&#10;0001&#13;&#10;jholton"/>
+        <attribute name="saved" value="2022-02-10 09:17:36 PM"/>
+        <attribute name="created" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDItMDg7MDg6NTk6MTIgUE07Mjg2OQ=="/>
+        <attribute name="edited" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDItMTA7MDk6MTc6MzYgUE07MTI7MzAyMQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="originalLoan, monthlyPayment" type="Real" array="False" size=""/>
+            <call expression="welcome"/>
+            <output expression="&quot;Please enter the loan amount.&quot;" newline="True"/>
+            <input variable="originalLoan"/>
+            <output expression="&quot;Please input the monthly payment.&quot;" newline="True"/>
+            <input variable="monthlyPayment"/>
+            <call expression="loanReport (originalLoan, monthlyPayment)"/>
+            <call expression="finish"/>
+        </body>
+    </function>
+    <function name="finish" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Thank you for using this program. This program was created by Holton.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="loanReport" type="None" variable="">
+        <parameters>
+            <parameter name="originalLoan" type="Real" array="False"/>
+            <parameter name="monthlyPayment" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="counter" type="Integer" array="False" size=""/>
+            <declare name="monthlyBalance" type="Real" array="False" size=""/>
+            <assign variable="counter" expression="1"/>
+            <assign variable="monthlyBalance" expression="originalLoan"/>
+            <while expression="monthlyBalance &gt; monthlyPayment">
+                <assign variable="monthlyBalance" expression="monthlyBalance - monthlyPayment"/>
+                <output expression="&quot;Month &quot;&amp;counter&amp;&quot; Balance &quot;&amp;monthlyBalance" newline="True"/>
+                <assign variable="counter" expression="counter + 1"/>
+            </while>
+            <assign variable="monthlyBalance" expression="monthlyBalance - monthlyBalance"/>
+            <output expression="&quot;Month &quot;&amp;counter&amp;&quot; Balance &quot;&amp;monthlyBalance" newline="True"/>
+        </body>
+    </function>
+    <function name="welcome" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome. This program will calculate how many months it will take to pay off a loam given a loan payment.&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

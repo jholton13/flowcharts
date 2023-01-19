@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="jasho"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-01-20 12:42:05 AM"/>
+        <attribute name="created" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDEtMTk7MTE6MjY6NDQgUE07Mjg2Mw=="/>
+        <attribute name="edited" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDEtMjA7MTI6NDI6MDUgQU07MTsyOTQ0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="T1: Balance 100 Overdrsfts: 2 Output Expected for fee: 5&#13;&#10;T2: Balance 100 Overdraft: 0 Output Expected for fee: 1&#13;&#10;T3: Balance 345 Overdrafts: 2 Output Expected for fee: 7.45&#13;&#10;T4: Balance 345 Overdrafts: 0 Output expected for fee: 3.45&#13;&#10;T5: Balance 350.90 Overdrafts: 2 Output expected for fee: 7.509&#13;&#10;T6: Balance 350.90 Overdrafts: 0 Output expected for fee: 3.509"/>
+            <declare name="userBalance" type="Real" array="False" size=""/>
+            <declare name="userOverdraft" type="Integer" array="False" size=""/>
+            <declare name="totalFee" type="Real" array="False" size=""/>
+            <declare name="totalOverdraft" type="Integer" array="False" size=""/>
+            <declare name="minimumFee" type="Real" array="False" size=""/>
+            <declare name="overdraftFee" type="Integer" array="False" size=""/>
+            <declare name="totalMinimum" type="Real" array="False" size=""/>
+            <output expression="&quot;Welcome&quot;" newline="True"/>
+            <output expression="&quot;Please input balance&quot;" newline="True"/>
+            <input variable="userBalance"/>
+            <output expression="&quot;Please input overdrafts&quot;" newline="True"/>
+            <input variable="userOverdraft"/>
+            <assign variable="minimumFee" expression="0.01"/>
+            <assign variable="overdraftFee" expression="2"/>
+            <assign variable="totalMinimum" expression="userBalance*0.01"/>
+            <assign variable="totalOverdraft" expression="userOverdraft*2"/>
+            <assign variable="totalFee" expression="totalMinimum+totalOverdraft"/>
+            <output expression="&quot;Results: Your total fees are &quot;&amp;totalBalance&amp; &quot; Jasmine thanks you for using this program&quot;" newline="True"/>
+            <output expression="&quot;End of Program&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

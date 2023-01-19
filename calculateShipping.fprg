@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="holton-asgn4a"/>
+        <attribute name="authors" value="Jasmine Holton"/>
+        <attribute name="about" value="Sp22&#13;&#10;0001&#13;&#10;jholton"/>
+        <attribute name="saved" value="2022-02-03 07:04:04 PM"/>
+        <attribute name="created" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDItMDI7MTE6NDY6NDkgUE07Mjg2Mw=="/>
+        <attribute name="edited" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDItMDM7MDc6MDQ6MDQgUE07NTsyOTY2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="T1: W= 2 rate = 1 total = 2&#13;&#10;T2: w= 5 rate = 2.25 total = 11.25&#13;&#10;T3: W= 6 rate = 2.25 total = 13.50&#13;&#10;T4: W= 7 rate = 3.50 total = 24.5&#13;&#10;T4: W= 10 rate = 3.50 total = 35.00&#13;&#10;T5: W= 12.3 rate = 4.10 total = 50.43&#9;&#13;&#10;"/>
+            <call expression="welcome"/>
+        </body>
+    </function>
+    <function name="calcShipping" type="None" variable="">
+        <parameters>
+            <parameter name="rate1" type="Real" array="False"/>
+            <parameter name="rate2" type="Real" array="False"/>
+            <parameter name="rate3" type="Real" array="False"/>
+            <parameter name="rate4" type="Real" array="False"/>
+            <parameter name="weight" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="shippingTotal" type="Real" array="False" size=""/>
+            <if expression="weight &gt; 10">
+                <then>
+                    <assign variable="shippingTotal" expression="rate4*weight"/>
+                </then>
+                <else>
+                    <if expression="weight &gt; 6">
+                        <then>
+                            <assign variable="shippingTotal" expression="rate3*weight"/>
+                        </then>
+                        <else>
+                            <if expression="weight &lt;= 2">
+                                <then>
+                                    <assign variable="shippingTotal" expression="rate1*weight"/>
+                                </then>
+                                <else>
+                                    <if expression="weight &lt; 6">
+                                        <then>
+                                            <assign variable="shippingTotal" expression="rate2*weight"/>
+                                        </then>
+                                        <else>
+                                            <if expression="weight &gt; 2">
+                                                <then>
+                                                    <assign variable="shippingTotal" expression="rate2*weight"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="weight &lt; 10">
+                                                        <then>
+                                                            <assign variable="shippingTotal" expression="rate3*weight"/>
+                                                        </then>
+                                                        <else/>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="&quot;Your total is $&quot;&amp;shippingTotal" newline="True"/>
+            <call expression="end"/>
+        </body>
+    </function>
+    <function name="end" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;You have reached the end of this program. Holton thanks you for using it&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="welcome" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="shippingTotal, rate1, rate2, rate3, rate4, weight" type="Real" array="False" size=""/>
+            <assign variable="rate1" expression="1"/>
+            <assign variable="rate2" expression="2.25"/>
+            <assign variable="rate3" expression="3.50"/>
+            <assign variable="rate4" expression="4.10"/>
+            <output expression="&quot;Welcome. This program will calculate shipping cost for packages.&quot;" newline="True"/>
+            <output expression="&quot;Please input the weight of the package.&quot;" newline="True"/>
+            <input variable="weight"/>
+            <call expression="calcShipping(rate1, rate2, rate3, rate4, weight)"/>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="Lab 1b- Creating YourFirst Program"/>
+        <attribute name="authors" value="Jasmine Holton"/>
+        <attribute name="about" value="Semester: Spring 2022&#13;&#10;Section: 0001&#13;&#10;Blackboard Username: jholton"/>
+        <attribute name="saved" value="2022-01-12 10:47:52 PM"/>
+        <attribute name="created" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDEtMTI7MDk6Mzg6MTYgUE07Mjg2NQ=="/>
+        <attribute name="edited" value="amFzaG87REVTS1RPUC04VjVOOTZUOzIwMjItMDEtMTI7MTA6NDc6NTIgUE07NjsyOTcw"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Test case 1: Birth Year: 1993 Current Year: 2022 Age = 29&#13;&#10;Test case 2: Birth Year: 1996 Current Year: 2022 Age = 26"/>
+            <declare name="currentYear" type="Integer" array="False" size=""/>
+            <declare name="birthYear" type="Integer" array="False" size=""/>
+            <declare name="age" type="Integer" array="False" size=""/>
+            <output expression="&quot;Please input your Birth Year&quot;" newline="True"/>
+            <input variable="birthYear"/>
+            <output expression="&quot;What is the Current Year?&quot;" newline="True"/>
+            <input variable="currentYear"/>
+            <assign variable="age" expression="currentYear-birthYear"/>
+            <output expression="&quot;Your age is &quot;&amp;age&amp;&quot; Jasmine thanks you for using this program&quot;" newline="True"/>
+            <output expression="&quot;End of Program&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
